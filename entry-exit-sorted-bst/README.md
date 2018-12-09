@@ -1,0 +1,4 @@
+For the inBuilding() I simply used a map keyed by Employee to a list of entry/exits.   BTW this is fast enough that sometimes the elapsed time in the test comes up as zero, so the test sometimes throws a divide by zero in its calculation of ops per second.   I fixed that.
+
+For the getEmployees(), I used a (rather poor) binary search tree sorted by entry time, with the nodes augmented with the max exit time for all nodes below the current node so we can see whether to bother traversing a set of nodes or not.    I'm getting 5k-6k ops per second with this.   It could probably be faster with further partitioning, but I wasn't seeing a good way to partition the test data (the comments say data is spread over 5000 days, but it is actually all just in one day - perhaps partitioning by day would be an option if the intervals didn't span days)
+
